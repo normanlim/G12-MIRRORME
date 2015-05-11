@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>MirrorMe!</title>
+		<link type="text/css" href="css/game_base.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/createjs.min.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/game_base.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script>
+		var fbLink = 'http://www.facebook.com/sharer/sharer.php?u=http://cstcode.ca/comp2910';
+		var twLink = 'http://www.twitter.com/share?url=http://cstcode.ca/comp2910';
+		var gplusLink = 'https://plus.google.com/share?url=http://cstcode.ca/comp2910';
+		
+		function goFB() {
+			window.location = fbLink;					
+		}
+		function goTwitter() {
+			window.location = twLink;					
+		}
+		function goGPlus() {
+			window.location = gplusLink;					
+		}
+		</script>
+		
+	</head>
+	<body>
+		<canvas id="stage">MirrorMe!</canvas>		
+	</body>
+</html>
