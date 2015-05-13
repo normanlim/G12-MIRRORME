@@ -1,0 +1,98 @@
+/* CSS Document */
+body,html{margin:0;font:11pt "Arial";color:#000}
+div,form,img,ul,ol,li,dl,dt,dd {border-style: none;
+	border-color: inherit;
+	border-width: 0;
+	padding: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+div,img,input,select,ul{float:left}
+hr {
+	margin: 0em 0em 1em 0em;
+	height: 1px;
+	border-top: 1px #C0C0C0 solid;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+}
+            
+ul{list-style-type:none}
+a{text-decoration:none;color:#000}
+	a:hover{text-decoration:underline;color:#428EFF}
+h1{
+   font-size:11px;
+   display:inline
+}
+h2{
+   font-size:11px;
+   display:inline
+}
+
+td
+{
+	FONT-FAMILY: "Arial";
+	FONT-SIZE: 11pt;
+}
+input
+{
+	FONT-SIZE: 11pt;
+	HEIGHT: 20px;
+}
+button
+{
+	FONT-SIZE: 11pt;
+	HEIGHT: 20px; 
+}
+select
+{
+	FONT-SIZE: 11pt;
+	HEIGHT: 20px;
+}
+
+.div_body_m{width:310px;float:none;clear:both;margin:0 auto;}
+
+/* table td background */ 
+.tdbg{
+	background:#E1F4EE;
+	line-height: 120%;
+}
+
+/* top bar background*/
+.topbg
+{
+	background:url(../img/topbar_bg.jpg);
+	color:green;
+}
+
+/* title */
+.title
+{
+	background:url(../img/topbar_bg.jpg);	
+}
+
+/* background color */
+.bgcolor {
+	background-color: #E1F4EE;
+}
+
+/* header color */
+.headcolor 
+{
+	color:blue;
+}
+
+/* border */
+.border_m {border: 1px solid #39867B;}
+
+/* wrapper width */
+.wrap_m {width:300px;}
+
+/* list */
+.list_m {width:310px; border:1px solid #539602; background-color:#F2FBF0; line-height:23px; margin-top:3px;}
+
+
+
+
+
