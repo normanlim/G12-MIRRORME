@@ -18,8 +18,9 @@ var TASK_D = 3;
 var TASK_4D = 4;
 var TASKS = [
 	1, 2, 3, 4, 1, 2, 3, 4, 1, 2,
-	3, 3, 3, 3, 3, 4, 4, 4, 4, 4,
-	4, 4, 4, 4, 4, 4, 4, 4, 4, 4
+	3, 4, 1, 2, 3, 4, 1, 2, 3, 4,
+	1, 2, 3, 4, 1, 2, 3, 4, 1, 2,
+	3, 4, 1, 2, 3, 4
 ];
 var TASK_NAME = ['TASK: H','TASK: V','TASK: D', 'TASK: 4Q']; 
 
@@ -40,7 +41,7 @@ var IS_TOUCH;
 var IS_OVER = !1;
 // Go button pressed?
 var IS_PRESSED = !1;
-var MAX_LEVEL = 30;
+var MAX_LEVEL = 36;
 var MAX_SEC = 30;
 var MAX_PAGE = 4;
 // Game level & score
@@ -395,79 +396,133 @@ createjs.Container.prototype.addCenterChild = function (a) {
 
 // Generate random array
 function genArray(task) {
+	var toMap = [];
+	// generate array of set number of 1's and 0's depending on level, and then shuffle it
+	if (task == TASK_4D) {
+		var flippedCount = Math.floor(level/9) + 2;
+		if (flippedCount > 6) {
+			flippedCount = 6; // cap maximum flipped tiles at 6 for 4d levels
+		}
+		for (i = 0; i < 9; i++) {
+			if (flippedCount > 0) {
+				toMap[i] = 1;
+				flippedCount--;
+			} else {
+				toMap[i] = 0;
+			}
+		}
+	} else {	
+		var flippedCount = Math.floor(level/12) + 3;
+		if (flippedCount > 12) {
+			flippedCount = 12; // cap maximum flipped tiles at 12 for regular levels
+		}
+		for (i = 0; i < 18; i++) {
+			if (flippedCount > 0) {
+				toMap[i] = 1;
+				flippedCount--;
+			} else {
+				toMap[i] = 0;
+			}
+		}
+	}
+	shuffle(toMap);
 	//var x = Math.floor(Math.random() * 2);
 	var r, count = 0;
 	if(task == TASK_H) {	
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
-				r = Math.random();				
+				/*r = Math.random();				
 				if(r < 0.25 && i < ARRAY_S/2) {
 					mapData[i][j] = 1;
 					count++;		
 				} else {
 					mapData[i][j] = 0;
-				}				
+				}*/
+				if (i < ARRAY_S/2) {
+					mapData[i][j] = toMap[count];
+					count++;
+				} else {
+					mapData[i][j] = 0;
+				}
 			}
 		}
-		if(count < 3) {
+		/*if(count < 3) {
 			r = Math.random();
 			if(r < 0.5) mapData = mapSample[0];
 			else mapData = mapSample[1];
-		}
+		}*/
 	} else if(task == TASK_V) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
-				r = Math.random();				
+				/*r = Math.random();				
 				if(r < 0.25 && j < ARRAY_S/2) {
 					mapData[i][j] = 1;
 					count++;		
 				} else {
 					mapData[i][j] = 0;
-				}				
+				} */
+				if (j < ARRAY_S/2) {
+					mapData[i][j] = toMap[count];
+					count++;
+				} else {
+					mapData[i][j] = 0;
+				}
 			}
 		}
-		if(count < 3) {
+		/*if(count < 3) {
 			r = Math.random();
 			if(r < 0.5) mapData = mapSample[2];
 			else mapData = mapSample[3];
-		}
+		}*/
 	} else if(task == TASK_D) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
-				r = Math.random();				
+				/*r = Math.random();				
 				if(r < 0.25 && (i+j) < ARRAY_S-1) {
 					mapData[i][j] = 1;
 					count++;		
 				} else {
 					mapData[i][j] = 0;
-				}				
+				} */
+				if ((i+j) < ARRAY_S-1) {
+					mapData[i][j] = toMap[count];
+					count++;
+				} else {
+					mapData[i][j] = 0;
+				}
 			}
 		}
-		if(count < 3) {
+		/*if(count < 3) {
 			r = Math.random();
 			if(r < 0.5) mapData = mapSample[4];
 			else mapData = mapSample[5];
-		}
+		}*/
 	} else if(task == TASK_4D) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
-				r = Math.random();				
+				/*r = Math.random();				
 				if(r < 0.25 && i < ARRAY_S/2 && j < ARRAY_S/2) {
 					mapData[i][j] = 1;
 					count++;		
 				} else {
 					mapData[i][j] = 0;
-				}				
+				} */
+				if (i < ARRAY_S/2 && j < ARRAY_S/2) {
+					mapData[i][j] = toMap[count];
+					count++;
+				} else {
+					mapData[i][j] = 0;
+				}
 			}
 		}
-		if(count < 1) {
+		/*if(count < 1) {
 			r = Math.random();
 			if(r < 0.5) mapData = mapSample[6];
 			else mapData = mapSample[7];
-		}
+		}*/
 	}
 }
 
@@ -481,5 +536,20 @@ function getScore() {
 	else if(level < 25) s = 10;
 	else s = 12;
 	return s;
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  while (0 !== currentIndex) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
 }
 
