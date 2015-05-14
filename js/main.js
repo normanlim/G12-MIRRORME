@@ -690,6 +690,10 @@ function loadTitlebar() {
 // Load map. task: 1- horizontal, 2 - vertical, 3 - diagonal, 4 - 4d
 function loadMap() {	
 	var task = TASKS[level];
+	MAX_SEC = 30 - (Math.floor(level/12) * 3); // start with 30s, after each set of 12 levels, reduce timer by 3s
+	if (MAX_SEC < 15) { // set floor to 15s
+		MAX_SEC = 15;
+	}
 	if(IS_MOBILE) {		
 		TILE_SPAN = TILE_S + 15;
 		TILE_X = (SCREEN_W - (ARRAY_S-1) * TILE_SPAN - TILE_S) / 2;
