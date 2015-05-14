@@ -422,7 +422,11 @@ function genArray(task) {
 		if (flippedCount > 12) {
 			flippedCount = 12; // cap maximum flipped tiles at 12 for regular levels
 		}
-		for (i = 0; i < 18; i++) {
+		var arraySize = 18;
+		if (task == TASK_D || task == TASK_D_I) {
+			arraySize = 15;
+		}
+		for (i = 0; i < arraySize; i++) {
 			if (flippedCount > 0) {
 				toMap[i] = 1;
 				flippedCount--;
