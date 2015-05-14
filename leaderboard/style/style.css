@@ -1,6 +1,6 @@
 /* CSS Document */
 body,html{margin:0;font:11pt "Arial";color:#000}
-div,form,img,ul,ol,li,dl,dt,dd {border-style: none;
+form,img,ul,ol,li,dl,dt,dd {border-style: none;
 	border-color: inherit;
 	border-width: 0;
 	padding: 0;
@@ -8,7 +8,7 @@ div,form,img,ul,ol,li,dl,dt,dd {border-style: none;
 	margin-top: 0;
 	margin-bottom: 0;
 }
-div,img,input,select,ul{float:left}
+img,select,ul{float:left}
 hr {
 	margin: 0em 0em 1em 0em;
 	height: 1px;
@@ -43,7 +43,7 @@ input
 button
 {
 	FONT-SIZE: 11pt;
-	HEIGHT: 20px; 
+	HEIGHT: 30px;
 }
 select
 {
@@ -78,21 +78,70 @@ select
 }
 
 /* header color */
-.headcolor 
+.headerclr
 {
 	color:blue;
 }
 
+.pageclr
+{
+	color:red;
+}
+
+.rankclr
+{
+	color:red;
+}
+
+.footheight {
+	height: 100px;
+}
+.btnheight {
+	line-height: 45px;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #eee;
+  color: #333;
+  padding: 4px 10px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #a2c6c2;
+  border-bottom: 1px solid #a2c6c2;
+  border-left: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btn:hover {
+	text-decoration: none;
+	color:#333;
+	background: linear-gradient(#e8f6fd, #acdcf7);
+}
+.btn:active {
+	text-decoration: none;
+    position: relative;
+    top: 1px;
+}
+
+.btn1 {height:27px;} 
+.pad{padding:0 5px 0 2px;}
+.pad1{padding-left:35px;}
+.pad2{padding-left:50px;}
+
 /* border */
-.border_m {border: 1px solid #39867B;}
+.border_m {border-bottom: 1px solid #39867B;}
 
 /* wrapper width */
 .wrap_m {width:300px;}
 
 /* list */
-.list_m {width:310px; border:1px solid #539602; background-color:#F2FBF0; line-height:23px; margin-top:3px;}
+.list_m {width:310px; border:2px solid #39867B; background-color:#F2FBF0; line-height:23px; margin-top:3px;}
 
-
+/* error display */
+div.error {
+ display:block;
+ border:1px solid #F9B9B2;
+ background-color: #FFDFDF;
+} 
 
 
 

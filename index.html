@@ -74,7 +74,7 @@
 		}
 		
 		function setCookie(cname) {
-			$.cookie(cname, genId());
+			$.cookie(cname, genId(), {expires: 30});
 		}
 		
 		function getCookie(cname) {
