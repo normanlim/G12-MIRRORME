@@ -34,10 +34,12 @@ var TILE_SPAN = 85;
 // Full screen?
 var SCREEN_SHOW_ALL = !1;
 var IS_MOBILE = !1;
+var MM_COOKIE = "MirrorMe_001";
 var BASE_RES_DIR = "../";
 var RES_DIR = "";
 var SOUND_DIR = "";
 var WEB_DIR = "http://cstcode.ca/comp2910/";
+var BOARD_DIR = "http://cstcode.ca/leaderboard/board.php";
 var USE_NATIVE_SOUND = !1;
 // Touch supported?
 var IS_TOUCH;
@@ -533,12 +535,12 @@ function genArray(task) {
 // reward
 function getScore() {
 	var s = 0;
-	if(level < 5) s = 2;
-	else if(level < 10) s = 4;
-	else if(level < 15) s = 6;
-	else if(level < 20) s = 8;
-	else if(level < 25) s = 10;
-	else s = 12;
+	if(level < 5) s = 10;
+	else if(level < 10) s = 15;
+	else if(level < 15) s = 20;
+	else if(level < 20) s = 30;
+	else if(level < 25) s = 50;
+	else s = 100;
 	return s;
 }
 

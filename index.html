@@ -5,28 +5,80 @@
 		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<title>MirrorMe!</title>
-        /** css design and layout **/
-		<link type="text/css" href="css/game_base.css" rel="stylesheet" /> 
-
-        
+		<link type="text/css" href="css/game_base.css" rel="stylesheet" />         
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/createjs.min.js"></script>
 		<script type="text/javascript" src="js/jquery.cookie.js"></script>
 		<script type="text/javascript" src="js/game_base.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<script>
-		var fbLink = 'http://www.facebook.com/sharer/sharer.php?u=http://cstcode.ca/comp2910';
-		var twLink = 'http://www.twitter.com/share?url=http://cstcode.ca/comp2910';
-		var gplusLink = 'https://plus.google.com/share?url=http://cstcode.ca/comp2910';
+		var fbLink = 'http://www.facebook.com/sharer/sharer.php?u='+WEB_DIR;
+		var twLink = 'http://www.twitter.com/share?url='+WEB_DIR;
+		var gplusLink = 'https://plus.google.com/share?url='+WEB_DIR;
 		
 		function goFB() {
 			window.location = fbLink;					
 		}
+
 		function goTwitter() {
 			window.location = twLink;					
 		}
+
 		function goGPlus() {
 			window.location = gplusLink;					
+		}
+
+        function goBoard() {
+			var slink;		
+			//check cookie
+			var cvalue = getCookie(MM_COOKIE);
+			if(cvalue == null) {
+				setCookie(MM_COOKIE);
+				cvalue = getCookie(MM_COOKIE);
+			}
+			slink = BOARD_DIR + "?u=" + cvalue + "&v=0";
+			window.location = slink;
+		}
+		
+		function submitScore(score) {
+			var xmlhttp;
+			var slink;
+			
+			//check cookie
+			var cvalue = getCookie(MM_COOKIE);
+			if(cvalue == null) {
+				setCookie(MM_COOKIE);
+				cvalue = getCookie(MM_COOKIE);
+			}
+			slink = BOARD_DIR + "?u=" + cvalue + "&v=" + score;
+			// new xml http request
+			if (window.XMLHttpRequest) {
+				// for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					//document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET",slink,true);
+			xmlhttp.send();			
+		}
+		
+		function genId() {
+			var base = 10000000;
+			return base + Math.floor((Math.random() * base) + 1);
+		}
+		
+		function setCookie(cname) {
+			$.cookie(cname, genId());
+		}
+		
+		function getCookie(cname) {
+			return $.cookie(cname);
 		}
 		</script>
 		

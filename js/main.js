@@ -9,7 +9,8 @@ createjs.Ticker.on("tick", function () {
 		if(timer <= 0) {				
 			ohSound.play();	
 			IS_OVER = !0;
-			if(score > best) best = score;				
+			if(score > best) best = score;	
+            submitScore(best);			
 			loadGameover();	
 			stage.removeChild(gameCtr);
 		} else {			
@@ -184,6 +185,15 @@ var HomeScene = function (a) {
 	a.x = btnX;
 	a.y = btnY + 2*btnSpan;
 	homeCtr.addChild(a);
+    a.on("mousedown", function (e) {
+		IS_TOUCH && e.nativeEvent instanceof MouseEvent || (this.scaleY = this.scaleX = 0.95);
+		clickSound.play();
+	}, a);
+	a.on("pressup", function (e) {
+		this.scaleY = this.scaleX = 1;
+		goBoard();
+		//stage.removeChild(homeCtr);
+	}, a);
 	
 	// settings btn
 	a = new createjs.Bitmap(queue.getResult("settings"));
