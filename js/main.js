@@ -713,7 +713,7 @@ function loadMap() {
 	var tileon1 = new createjs.Bitmap(mmLoad.getResult("tileon1"));
 	var tileon2 = new createjs.Bitmap(mmLoad.getResult("tileon2"));
 	
-	if(task == TASK_H) {			
+	if(task == TASK_H || task == TASK_H_I) {			
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i < ARRAY_S/2) {
@@ -744,7 +744,7 @@ function loadMap() {
 				gameCtr.addChild(tile[i][j]);		
 			}
 		}		
-	} else if(task == TASK_V) {
+	} else if(task == TASK_V || task == TASK_V_I) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(j < ARRAY_S/2) {
@@ -775,7 +775,7 @@ function loadMap() {
 				gameCtr.addChild(tile[i][j]);		
 			}
 		}		
-	} else if(task == TASK_D) {
+	} else if(task == TASK_D || task == TASK_D_I) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i+j < ARRAY_S-1) {
@@ -808,7 +808,7 @@ function loadMap() {
 				gameCtr.addChild(tile[i][j]);		
 			}
 		}		
-	} else if(task == TASK_4D) {
+	} else if(task == TASK_4D || task == TASK_4D_I) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i < ARRAY_S/2 && j < ARRAY_S/2) {
@@ -895,6 +895,17 @@ function isMatch() {
 		}
 		if(c != c1) return 0;
 		
+	} else if(task == TASK_H_I) {
+		for(i = 0; i < mapData.length; i++) {
+			for(j = 0; j < mapData.length; j++) {
+				if(i < mapData.length/2 && mapData[i][j] == 1) {
+					c++;
+					if(mapData[i][j] == mapData[ARRAY_S-i-1][j]) return 0;
+				} else if(i >= mapData.length/2 && mapData[i][j] == 0) c1++;
+			}			
+		}
+		if(c != c1) return 0;
+		
 	} else if(task == TASK_V) {
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
@@ -905,6 +916,16 @@ function isMatch() {
 			}			
 		}
 		if(c != c1) return 0;
+	} else if(task == TASK_V_I) {
+		for(i = 0; i < mapData.length; i++) {
+			for(j = 0; j < mapData.length; j++) {
+				if(j < mapData.length/2 && mapData[i][j] == 1) {
+					c++;
+					if(mapData[i][j] == mapData[i][ARRAY_S-j-1]) return 0;
+				} else if(j >= mapData.length/2 && mapData[i][j] == 0) c1++;
+			}			
+		}
+		if(c != c1) return 0;
 	} else if(task == TASK_D) {
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
@@ -912,6 +933,16 @@ function isMatch() {
 					c++;
 					if(mapData[i][j] != mapData[ARRAY_S-j-1][ARRAY_S-i-1]) return 0;
 				} else if(i+j > mapData.length-1 && mapData[i][j] == 1) c1++;
+			}			
+		}
+		if(c != c1) return 0;
+	} else if(task == TASK_D_I) {
+		for(i = 0; i < mapData.length; i++) {
+			for(j = 0; j < mapData.length; j++) {
+				if(i+j < mapData.length-1 && mapData[i][j] == 1) {
+					c++;
+					if(mapData[i][j] == mapData[ARRAY_S-j-1][ARRAY_S-i-1]) return 0;
+				} else if(i+j > mapData.length-1 && mapData[i][j] == 0) c1++;
 			}			
 		}
 		if(c != c1) return 0;
@@ -927,6 +958,21 @@ function isMatch() {
 				} else if(i < mapData.length/2 && j >= mapData.length/2 && mapData[i][j] == 1) c1++;
 				else if(i >= mapData.length/2 && j < mapData.length/2 && mapData[i][j] == 1) c2++;
 				else if(i >= mapData.length/2 && j >= mapData.length/2 && mapData[i][j] == 1) c3++;
+			}			
+		}
+		if(c != c1 || c != c2 || c != c3) return 0;
+	} else if(task == TASK_4D_I) {
+	
+		for(i = 0; i < mapData.length; i++) {
+			for(j = 0; j < mapData.length; j++) {
+				if(i < mapData.length/2 && j < mapData.length/2 && mapData[i][j] == 1) {
+					c++;
+					if(mapData[i][j] == mapData[i][ARRAY_S-j-1]
+					|| mapData[i][j] == mapData[ARRAY_S-i-1][j]
+					|| mapData[i][j] == mapData[ARRAY_S-j-1][ARRAY_S-i-1]) return 0;
+				} else if(i < mapData.length/2 && j >= mapData.length/2 && mapData[i][j] == 0) c1++;
+				else if(i >= mapData.length/2 && j < mapData.length/2 && mapData[i][j] == 0) c2++;
+				else if(i >= mapData.length/2 && j >= mapData.length/2 && mapData[i][j] == 0) c3++;
 			}			
 		}
 		if(c != c1 || c != c2 || c != c3) return 0;
