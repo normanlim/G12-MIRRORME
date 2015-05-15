@@ -60,8 +60,10 @@ createjs.Ticker.on("tick", function () {
 		if(timer <= 0) {				
 			ohSound.play();	
 			IS_OVER = !0;
-			if(score > best) best = score;	
-            submitScore(best);			
+			if(score > best) {
+			    best = score;	
+                submitScore(best);
+			}			
 			loadGameover();	
 			stage.removeChild(gameCtr);
 		} else {			
@@ -329,7 +331,11 @@ var GameoverScene = function(a) {
 	var fbX = 90, fbY = 530;
 	var scoreY = 313, bestY = 396;
 	var contY = 290, menuY = 140;
-	//if(IS_MOBILE) contY = 160;	
+	if(IS_MOBILE) {
+		fbY = 550;
+		contY = 380;
+		menuY = 200;
+	}	
 	
 	var overCtr = new createjs.Container;
 	stage.addChild(overCtr);
@@ -446,7 +452,11 @@ var GameoverScene = function(a) {
 var ManualScene = function(a, b) {
 	var jumpX = 33, jumpY = 37;
 	var captionY = 56, manY = 170, menuY = 150;
-	
+	if(IS_MOBILE) {
+		manY = 220;
+		menuY = 200;
+	}
+
 	var manCtr = new createjs.Container;
 	stage.addChild(manCtr);
 	
@@ -532,6 +542,8 @@ var SettingsScene = function(a) {
 	var sliderX = 363, sliderY = 227, sliderSpan = 200;
 	//sliderbar
 	var topY = 238, leftX = 183, len = 417;
+    if(IS_MOBILE) menuY = 200;
+
 	// coefficient (music, effects, brightness)
 	var c1 = 0.0, c2 = 0.0, c3 = 0.0;
 	var w;
