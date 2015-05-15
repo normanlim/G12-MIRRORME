@@ -4,6 +4,57 @@
 *
 */
 createjs.Ticker.on("tick", function () {
+	var task = TASKS[level];
+
+	var warnr2 = new createjs.Bitmap(mmLoad.getResult("warnr2"));
+	var warnr3 = new createjs.Bitmap(mmLoad.getResult("warnr3"));
+	var warnr4 = new createjs.Bitmap(mmLoad.getResult("warnr4"));
+	var warnd1 = new createjs.Bitmap(mmLoad.getResult("warnd1"));
+	var warnd2 = new createjs.Bitmap(mmLoad.getResult("warnd2"));
+	var warnd3 = new createjs.Bitmap(mmLoad.getResult("warnd3"));
+	var warnd4 = new createjs.Bitmap(mmLoad.getResult("warnd4"));
+	var warnq1 = new createjs.Bitmap(mmLoad.getResult("warnq1"));
+	var warnq2 = new createjs.Bitmap(mmLoad.getResult("warnq2"));
+	var warnq3 = new createjs.Bitmap(mmLoad.getResult("warnq3"));
+	var warnq4 = new createjs.Bitmap(mmLoad.getResult("warnq4"));
+	
+	warnr2.y = 215;
+	warnr2.scaleX = 1.46;
+	warnr2.scaleY = 1.85;
+	warnr3.y = 215;
+	warnr3.scaleX = 1.46;
+	warnr3.scaleY = 1.85;
+	warnr4.y = 215;
+	warnr4.scaleX = 1.46;
+	warnr4.scaleY = 1.85;
+	
+	warnd1.scaleX = 1.45;
+	warnd1.scaleY = 1.45;
+	warnd1.y = 225;
+	warnd2.scaleX = 1.45;
+	warnd2.scaleY = 1.45;
+	warnd2.y = 225;
+	warnd3.scaleX = 1.45;
+	warnd3.scaleY = 1.45;
+	warnd3.y = 225;
+	warnd4.scaleX = 1.45;
+	warnd4.scaleY = 1.45;
+	warnd4.y = 225;
+	warnd1.x = warnd2.x = warnd3.x = warnd4.x = 10;
+	
+	warnq1.scaleX = warnq1.scaleY = 1.45;
+	warnq1.x = 3;
+	warnq1.y = 225;
+	warnq2.scaleX = warnq2.scaleY = 1.45;
+	warnq2.x = 3;
+	warnq2.y = 225;
+	warnq3.scaleX = warnq3.scaleY = 1.45;
+	warnq3.x = 3;
+	warnq3.y = 225;
+	warnq4.scaleX = warnq4.scaleY = 1.45;
+	warnq4.x = 3;
+	warnq4.y = 225;
+	
 	if(!IS_OVER) {
 		//if(timer < 29) {	
 		if(timer <= 0) {				
@@ -18,6 +69,50 @@ createjs.Ticker.on("tick", function () {
 			if(lapse >= 0 && lapse <= MAX_SEC) {
 				timer = MAX_SEC - lapse;
 				lblTimer.text = "0:" + trimStr(""+timer);
+				
+				if (task == TASK_H_F) {
+					if (lapse > 4 && lapse < 6) {
+						gameCtr.addChild(warnr2);
+					} else if (lapse >= 6 && lapse < 7) {
+						gameCtr.addChild(warnr3);
+					} else if (lapse >= 7) {
+						gameCtr.addChild(warnr4);
+					}
+				} else if (task == TASK_V_F) {
+					warnr2.rotation = -90;
+					warnr2.y = 855;
+					warnr3.rotation = -90;
+					warnr3.y = 855;
+					warnr4.rotation = -90;
+					warnr4.y = 855;
+					if (lapse > 4 && lapse < 6) {
+						gameCtr.addChild(warnr2);
+					} else if (lapse >= 6 && lapse < 7) {
+						gameCtr.addChild(warnr3);
+					} else if (lapse >= 7) {
+						gameCtr.addChild(warnr4);
+					}
+				} else if (task == TASK_D_F) {
+					if (lapse > 4 && lapse < 6) {
+						gameCtr.addChild(warnd1);
+					} else if (lapse >= 6 && lapse < 7) {
+						gameCtr.addChild(warnd2);
+					} else if (lapse >= 7 && lapse < 8) {
+						gameCtr.addChild(warnd3);
+					} else if (lapse >= 8) {
+						gameCtr.addChild(warnd4);
+					}
+				} else if (task == TASK_4D_F) {
+					if (lapse > 4 && lapse < 6) {
+						gameCtr.addChild(warnq1);
+					} else if (lapse >= 6 && lapse < 7) {
+						gameCtr.addChild(warnq2);
+					} else if (lapse >= 7 && lapse < 8) {
+						gameCtr.addChild(warnq3);
+					} else if (lapse >= 8) {
+						gameCtr.addChild(warnq4);
+					}
+				}
 			}
 		}
 	}
@@ -36,7 +131,9 @@ function loadGameSceneRes() {
 	{src:"mirror.png", id:"mirror"}, {src:"bar_score.png", id:"barscore"}, {src:"bar_timer.png", id:"bartimer"}, {src:"bar_task.png", id:"bartask"}, 
 	{src:"tile_split.png", id:"tilesplit"}, {src:"tile_con.png", id:"tilecon"}, {src:"tile_coff.png", id:"tilecoff"}, {src:"tile_on.png", id:"tileon"}, 
 	{src:"tile_on1.png", id:"tileon1"}, {src:"tile_off1.png", id:"tileoff1"}, {src:"tile_on2.png", id:"tileon2"}, {src:"tile_off2.png", id:"tileoff2"}, 
-	{src:"tile_off.png", id:"tileoff"}]}, !1);
+	{src:"tile_off.png", id:"tileoff"}, {src:"warningRECTboarder.gif", id:"warnr1"}, {src:"warningRECTboarder2.gif", id:"warnr2"}, {src:"warningRECTboarder3.gif", id:"warnr3"}, 
+	{src:"warningRECTboarder4.gif", id:"warnr4"}, {src:"warnREAL0.gif", id:"warnd0"}, {src:"warnREAL1.gif", id:"warnd1"}, {src:"warnREAL2.gif", id:"warnd2"}, 
+	{src:"warnREAL3.gif", id:"warnd3"}, {src:"warnREAL4.gif", id:"warnd4"}, {src:"warningSQUARE.gif", id:"warnq0"}, {src:"warningSQUARE1.gif", id:"warnq1"}, {src:"warningSQUARE2.gif", id:"warnq2"}, {src:"warningSQUARE3.gif", id:"warnq3"} ,{src:"warningSQUARE4.gif", id:"warnq4"}]}, !1);
 }
 
 // Load game over screen resource
@@ -722,8 +819,11 @@ function loadMap() {
 	var tileon = new createjs.Bitmap(mmLoad.getResult("tileon"));
 	var tileon1 = new createjs.Bitmap(mmLoad.getResult("tileon1"));
 	var tileon2 = new createjs.Bitmap(mmLoad.getResult("tileon2"));
+	var warnr1 = new createjs.Bitmap(mmLoad.getResult("warnr1"));
+	var warnd0 = new createjs.Bitmap(mmLoad.getResult("warnd0"));
+	var warnq0 = new createjs.Bitmap(mmLoad.getResult("warnq0"));
 	
-	if(task == TASK_H || task == TASK_H_I) {			
+	if(task == TASK_H || task == TASK_H_I || task == TASK_H_F) {			
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i < ARRAY_S/2) {
@@ -751,10 +851,16 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				gameCtr.addChild(tile[i][j]);		
+				warnr1.y = 215;
+				warnr1.scaleX = 1.46;
+				warnr1.scaleY = 1.85;
+				gameCtr.addChild(tile[i][j]);
+				if (task == TASK_H_F) {
+					gameCtr.addChild(warnr1);
+				}
 			}
 		}		
-	} else if(task == TASK_V || task == TASK_V_I) {
+	} else if(task == TASK_V || task == TASK_V_I || task == TASK_V_F) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(j < ARRAY_S/2) {
@@ -782,10 +888,17 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				gameCtr.addChild(tile[i][j]);		
+				warnr1.y = 855;
+				warnr1.scaleX = 1.46;
+				warnr1.scaleY = 1.85;
+				warnr1.rotation = -90;
+				gameCtr.addChild(tile[i][j]);
+				if (task == TASK_V_F) {
+					gameCtr.addChild(warnr1);
+				}
 			}
 		}		
-	} else if(task == TASK_D || task == TASK_D_I) {
+	} else if(task == TASK_D || task == TASK_D_I || task == TASK_D_F) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i+j < ARRAY_S-1) {
@@ -815,10 +928,17 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				gameCtr.addChild(tile[i][j]);		
+				warnd0.scaleX = 1.45;
+				warnd0.scaleY = 1.45;
+				warnd0.y = 225;
+				warnd0.x = 10;
+				gameCtr.addChild(tile[i][j]);
+				if (task == TASK_D_F) {
+					gameCtr.addChild(warnd0);
+				}
 			}
 		}		
-	} else if(task == TASK_4D || task == TASK_4D_I) {
+	} else if(task == TASK_4D || task == TASK_4D_I || task == TASK_4D_F) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i < ARRAY_S/2 && j < ARRAY_S/2) {
@@ -884,7 +1004,13 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				gameCtr.addChild(tile[i][j]);		
+				warnq0.scaleX = warnq0.scaleY = 1.45;
+				warnq0.x = 3;
+				warnq0.y = 225;
+				gameCtr.addChild(tile[i][j]);
+				if (task == TASK_4D_F) {
+					gameCtr.addChild(warnq0);
+				}
 			}
 		}		
 	}
@@ -894,7 +1020,7 @@ function isMatch() {
 	var ret = 1;
 	var c = 0, c1 = 0, c2 = 0, c3 = 0;
 	var task = TASKS[level];
-	if(task == TASK_H) {
+	if(task == TASK_H || task == TASK_H_F) {
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
 				if(i < mapData.length/2 && mapData[i][j] == 1) {
@@ -916,7 +1042,7 @@ function isMatch() {
 		}
 		if(c != c1) return 0;
 		
-	} else if(task == TASK_V) {
+	} else if(task == TASK_V || task == TASK_V_F) {
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
 				if(j < mapData.length/2 && mapData[i][j] == 1) {
@@ -936,7 +1062,7 @@ function isMatch() {
 			}			
 		}
 		if(c != c1) return 0;
-	} else if(task == TASK_D) {
+	} else if(task == TASK_D || task == TASK_D_F) {
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
 				if(i+j < mapData.length-1 && mapData[i][j] == 1) {
@@ -956,7 +1082,7 @@ function isMatch() {
 			}			
 		}
 		if(c != c1) return 0;
-	} else if(task == TASK_4D) {
+	} else if(task == TASK_4D || task == TASK_4D_F) {
 	
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {

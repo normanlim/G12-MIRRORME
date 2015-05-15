@@ -11,7 +11,9 @@ var SCREEN_XH = 1136;
 // Array size
 var ARRAY_S = 6;
 var TILE_S = 80;
-// Task: 1- horizontal, 2 - vertical, 3 - diagonal, 4 -4 quadrant, 5 - horizontal inverse, 6 - vertical inverse, 7 - diagonal inverse, 8 -4quadrant inverse
+// Task: 1- horizontal, 2 - vertical, 3 - diagonal, 4 -4 quadrant, 
+// 5 - horizontal inverse, 6 - vertical inverse, 7 - diagonal inverse, 8 -4quadrant inverse
+// 9 - horizontal fade2black, 10 - vertical fade2black, 11 - diagonal fade2black, 12 - 4 quadrant fade2black
 var TASK_H = 1;
 var TASK_V = 2;
 var TASK_D = 3;
@@ -20,13 +22,17 @@ var TASK_H_I = 5;
 var TASK_V_I = 6;
 var TASK_D_I = 7;
 var TASK_4D_I = 8;
+var TASK_H_F = 9;
+var TASK_V_F = 10;
+var TASK_D_F = 11;
+var TASK_4D_F = 12;
 var TASKS = [
-	1, 2, 3, 4, 5, 6, 7, 8, 1, 2,
-	3, 4, 1, 2, 3, 4, 5, 6, 7, 8,
-	1, 2, 3, 4, 1, 2, 3, 4, 5, 6,
-	7, 8, 1, 2, 3, 4
+	1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+	11, 12, 1, 2, 3, 4, 5, 6, 7, 8,
+	9, 10, 11, 12, 1, 2, 3, 4, 5, 6,
+	7, 8, 9, 10, 11, 12
 ];
-var TASK_NAME = ['TASK: H','TASK: V','TASK: D', 'TASK: 4Q', 'H(Inv.)', 'V(Inv.)', 'D(Inv.)', '4Q(Inv.)']; 
+var TASK_NAME = ['TASK: H','TASK: V','TASK: D', 'TASK: 4Q', 'H(Inv.)', 'V(Inv.)', 'D(Inv.)', '4Q(Inv.)', 'H(F2B)', 'V(F2B)', 'D(F2B)', '4Q(F2B)']; 
 
 var TILE_X = 65;
 var TILE_Y = 285;
@@ -404,7 +410,7 @@ createjs.Container.prototype.addCenterChild = function (a) {
 function genArray(task) {
 	var toMap = [];
 	// generate array of set number of 1's and 0's depending on level, and then shuffle it
-	if (task == TASK_4D || task == TASK_4D_I) {
+	if (task == TASK_4D || task == TASK_4D_I || task == TASK_4D_F) {
 		var flippedCount = Math.floor(level/9) + 2;
 		if (flippedCount > 6) {
 			flippedCount = 6; // cap maximum flipped tiles at 6 for 4d levels
@@ -423,7 +429,7 @@ function genArray(task) {
 			flippedCount = 12; // cap maximum flipped tiles at 12 for regular levels
 		}
 		var arraySize = 18;
-		if (task == TASK_D || task == TASK_D_I) {
+		if (task == TASK_D || task == TASK_D_I || task == TASK_D_F) {
 			arraySize = 15;
 		}
 		for (i = 0; i < arraySize; i++) {
@@ -438,7 +444,7 @@ function genArray(task) {
 	shuffle(toMap);
 	//var x = Math.floor(Math.random() * 2);
 	var r, count = 0;
-	if(task == TASK_H || task == TASK_H_I) {	
+	if(task == TASK_H || task == TASK_H_I || task == TASK_H_F) {	
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
 				/*r = Math.random();				
@@ -461,7 +467,7 @@ function genArray(task) {
 			if(r < 0.5) mapData = mapSample[0];
 			else mapData = mapSample[1];
 		}*/
-	} else if(task == TASK_V || task == TASK_V_I) {	
+	} else if(task == TASK_V || task == TASK_V_I || task == TASK_V_F) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
@@ -485,7 +491,7 @@ function genArray(task) {
 			if(r < 0.5) mapData = mapSample[2];
 			else mapData = mapSample[3];
 		}*/
-	} else if(task == TASK_D || task == TASK_D_I) {	
+	} else if(task == TASK_D || task == TASK_D_I || task == TASK_D_F) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
@@ -509,7 +515,7 @@ function genArray(task) {
 			if(r < 0.5) mapData = mapSample[4];
 			else mapData = mapSample[5];
 		}*/
-	} else if(task == TASK_4D || task == TASK_4D_I) {	
+	} else if(task == TASK_4D || task == TASK_4D_I || task == TASK_4D_F) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			
