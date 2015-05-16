@@ -2,11 +2,10 @@
 ////MirrorMe! - Readme.txt
 
 1. About MirrorMe!
-While staring at a mirror, you should be able to see a beatiful reflection of yourself.
+While staring at a mirror, you should be able to see a beatiful reflection of yourself. 
 However, if these mirrors ceased to exist, would you be able to recreate that image in your mind?
-MirrorMe! is an easy to learn brain training game based on symmetry. See the pattern on one side, 
-and recreate its mirror image on the other side. Think, click and go. The game will not only make
-you look and think twice, but force you to adapt to different situations.
+MirrorMe! is an easy to learn brain training game based on symmetry. See the pattern on one side, and recreate its mirror image on the other side. Think, click and go. 
+The game will not only make you look and think twice, but force you to adapt to different situations.
 
 2. Demo Site
 http://cstcode.ca/comp2910/
@@ -16,8 +15,7 @@ http://cstcode.ca/comp2910/
 - All mainstream browsers (Firefox, IE, Chrome, Safari, Opera).
 
 4. Restriction
-DO NOT open the index.html file in Chrome directly. Due to Google Chrome's security restriction,
-the mouse events in game won't fully function in Chrome locally. Please run the demo site instead.
+DO NOT open the index.html file in Chrome directly. Due to Google Chrome's security restriction, the mouse events in game won't fully function in Chrome locally. Please run the demo site instead.
 Android devices and other browsers don't have this restriction.
 
 5. Development Languages and Tools
