@@ -55,7 +55,7 @@ var IS_OVER = !1;
 var IS_PRESSED = !1;
 var MAX_LEVEL = 36;
 var MAX_SEC = 30;
-var MAX_PAGE = 4;
+var MAX_PAGE = 6;
 // Game level & score
 var level = 0;
 var score = 0, best = 0;

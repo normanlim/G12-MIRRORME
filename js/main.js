@@ -147,7 +147,8 @@ function loadGameoverSceneRes() {
 // Load manual screen resource
 function loadManualSceneRes() {
 	queue.loadManifest({path:RES_DIR + "img/", manifest:[{src:"btn_last.png", id:"last"}, {src:"btn_next.png", id:"next"}, {src:"manuala.png", id:"manuala"},
-	{src:"manual0.png", id:"manual0"}, {src:"manual1.png", id:"manual1"}, {src:"manual2.png", id:"manual2"}, {src:"manual3.png", id:"manual3"}]}, !1);
+	{src:"manual0.png", id:"manual0"}, {src:"manual1.png", id:"manual1"}, {src:"manual2.png", id:"manual2"}, {src:"manual3.png", id:"manual3"},
+	{src:"manual4.png", id:"manual4"}, {src:"manual5.png", id:"manual5"}]}, !1);
 }
 
 // Load settings screen resource
@@ -451,7 +452,7 @@ var GameoverScene = function(a) {
 // a - color, b - page#
 var ManualScene = function(a, b) {
 	var jumpX = 33, jumpY = 37;
-	var captionY = 56, manY = 170, menuY = 150;
+	var captionY = 56, manY = 170, menuY = 140;
 	if(IS_MOBILE) {
 		manY = 220;
 		menuY = 200;
