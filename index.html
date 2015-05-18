@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
+<html>
+	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<title>MirrorMe!</title>
-		<link type="text/css" href="css/game_base.css" rel="stylesheet" />         
+		<link type="text/css" href="css/game_base.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/createjs.min.js"></script>
 		<script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -15,42 +16,67 @@
 		var fbLink = 'http://www.facebook.com/sharer/sharer.php?u='+WEB_DIR;
 		var twLink = 'http://www.twitter.com/share?url='+WEB_DIR;
 		var gplusLink = 'https://plus.google.com/share?url='+WEB_DIR;
-		
+				
 		function goFB() {
 			window.location = fbLink;					
 		}
-
+		
 		function goTwitter() {
 			window.location = twLink;					
 		}
-
+		
 		function goGPlus() {
 			window.location = gplusLink;					
 		}
-
-        function goBoard() {
-			var slink;		
-			//check cookie
-			var cvalue = getCookie(MM_COOKIE);
-			if(cvalue == null) {
-				setCookie(MM_COOKIE);
+		
+		function goAchievement(star, level) {
+			var slink;
+			var cvalue;
+			if(IS_MOBILE) cvalue = testId;
+			else {
+				//check cookie
 				cvalue = getCookie(MM_COOKIE);
+				if(cvalue == null) {
+					setCookie(MM_COOKIE);
+					cvalue = getCookie(MM_COOKIE);
+				}
 			}
-			slink = BOARD_DIR + "?u=" + cvalue + "&v=0";
+			slink = ACHIEVEMENT_DIR + "?u=" + rota13(cvalue) + "&v=" + rota13(star) + "&w=" + rota13(level);
 			window.location = slink;
 		}
 		
+		function goBoard() {
+			var slink;
+			var cvalue;
+			if(IS_MOBILE) cvalue = testId;
+			else {
+				//check cookie
+				cvalue = getCookie(MM_COOKIE);
+				if(cvalue == null) {
+					setCookie(MM_COOKIE);
+					cvalue = getCookie(MM_COOKIE);
+				}
+			}
+			slink = BOARD_DIR + "?u=" + rota13(cvalue);
+			window.location = slink;
+		}
+				
 		function submitScore(score) {
 			var xmlhttp;
 			var slink;
+			var cvalue;
 			
-			//check cookie
-			var cvalue = getCookie(MM_COOKIE);
-			if(cvalue == null) {
-				setCookie(MM_COOKIE);
+			if(IS_MOBILE) cvalue = testId;
+			else {
+				//check cookie
 				cvalue = getCookie(MM_COOKIE);
+				if(cvalue == null) {
+					setCookie(MM_COOKIE);
+					cvalue = getCookie(MM_COOKIE);
+				}
 			}
-			slink = BOARD_DIR + "?u=" + cvalue + "&v=" + score;
+			slink = BOARD_DIR + "?u=" + rota13(cvalue) + "&v=" + rota13(score);
+			
 			// new xml http request
 			if (window.XMLHttpRequest) {
 				// for IE7+, Firefox, Chrome, Opera, Safari

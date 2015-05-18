@@ -5,57 +5,69 @@
 */
 createjs.Ticker.on("tick", function () {
 	var task = TASKS[level];
-
-	var warnr2 = new createjs.Bitmap(mmLoad.getResult("warnr2"));
-	var warnr3 = new createjs.Bitmap(mmLoad.getResult("warnr3"));
-	var warnr4 = new createjs.Bitmap(mmLoad.getResult("warnr4"));
-	var warnd1 = new createjs.Bitmap(mmLoad.getResult("warnd1"));
-	var warnd2 = new createjs.Bitmap(mmLoad.getResult("warnd2"));
-	var warnd3 = new createjs.Bitmap(mmLoad.getResult("warnd3"));
-	var warnd4 = new createjs.Bitmap(mmLoad.getResult("warnd4"));
-	var warnq1 = new createjs.Bitmap(mmLoad.getResult("warnq1"));
-	var warnq2 = new createjs.Bitmap(mmLoad.getResult("warnq2"));
-	var warnq3 = new createjs.Bitmap(mmLoad.getResult("warnq3"));
-	var warnq4 = new createjs.Bitmap(mmLoad.getResult("warnq4"));
 	
-	warnr2.y = 215;
-	warnr2.scaleX = 1.46;
-	warnr2.scaleY = 1.85;
-	warnr3.y = 215;
-	warnr3.scaleX = 1.46;
-	warnr3.scaleY = 1.85;
-	warnr4.y = 215;
-	warnr4.scaleX = 1.46;
-	warnr4.scaleY = 1.85;
+	if(stat == STAT_GAME && task > 8) {
+		var warnr2 = new createjs.Bitmap(mmLoad.getResult("warnr2"));
+		var warnr3 = new createjs.Bitmap(mmLoad.getResult("warnr3"));
+		var warnr4 = new createjs.Bitmap(mmLoad.getResult("warnr4"));
+		var warnd1 = new createjs.Bitmap(mmLoad.getResult("warnd1"));
+		var warnd2 = new createjs.Bitmap(mmLoad.getResult("warnd2"));
+		var warnd3 = new createjs.Bitmap(mmLoad.getResult("warnd3"));
+		var warnd4 = new createjs.Bitmap(mmLoad.getResult("warnd4"));
+		var warnq1 = new createjs.Bitmap(mmLoad.getResult("warnq1"));
+		var warnq2 = new createjs.Bitmap(mmLoad.getResult("warnq2"));
+		var warnq3 = new createjs.Bitmap(mmLoad.getResult("warnq3"));
+		var warnq4 = new createjs.Bitmap(mmLoad.getResult("warnq4"));		
+		
+		warnr2.y = 215;
+		warnr2.scaleX = 1.46;
+		warnr2.scaleY = 1.85;
+		warnr3.y = 215;
+		warnr3.scaleX = 1.46;
+		warnr3.scaleY = 1.85;
+		warnr4.y = 215;
+		warnr4.scaleX = 1.46;
+		warnr4.scaleY = 1.85;
+		
+		warnd1.scaleX = 1.45;
+		warnd1.scaleY = 1.45;
+		warnd1.y = 225;
+		warnd2.scaleX = 1.45;
+		warnd2.scaleY = 1.45;
+		warnd2.y = 225;
+		warnd3.scaleX = 1.45;
+		warnd3.scaleY = 1.45;
+		warnd3.y = 225;
+		warnd4.scaleX = 1.45;
+		warnd4.scaleY = 1.45;
+		warnd4.y = 225;
+		warnd1.x = warnd2.x = warnd3.x = warnd4.x = 10;
+		
+		warnq1.scaleX = warnq1.scaleY = 1.45;
+		warnq1.x = 3;
+		warnq1.y = 225;
+		warnq2.scaleX = warnq2.scaleY = 1.45;
+		warnq2.x = 3;
+		warnq2.y = 225;
+		warnq3.scaleX = warnq3.scaleY = 1.45;
+		warnq3.x = 3;
+		warnq3.y = 225;
+		warnq4.scaleX = warnq4.scaleY = 1.45;
+		warnq4.x = 3;
+		warnq4.y = 225;
+	}
 	
-	warnd1.scaleX = 1.45;
-	warnd1.scaleY = 1.45;
-	warnd1.y = 225;
-	warnd2.scaleX = 1.45;
-	warnd2.scaleY = 1.45;
-	warnd2.y = 225;
-	warnd3.scaleX = 1.45;
-	warnd3.scaleY = 1.45;
-	warnd3.y = 225;
-	warnd4.scaleX = 1.45;
-	warnd4.scaleY = 1.45;
-	warnd4.y = 225;
-	warnd1.x = warnd2.x = warnd3.x = warnd4.x = 10;
-	
-	warnq1.scaleX = warnq1.scaleY = 1.45;
-	warnq1.x = 3;
-	warnq1.y = 225;
-	warnq2.scaleX = warnq2.scaleY = 1.45;
-	warnq2.x = 3;
-	warnq2.y = 225;
-	warnq3.scaleX = warnq3.scaleY = 1.45;
-	warnq3.x = 3;
-	warnq3.y = 225;
-	warnq4.scaleX = warnq4.scaleY = 1.45;
-	warnq4.x = 3;
-	warnq4.y = 225;
-	
-	if(!IS_OVER) {
+	if(stat == STAT_OVER) {
+		var achblk1 = new createjs.Bitmap(mmLoad.getResult("ach1"));
+		var achblk2 = new createjs.Bitmap(mmLoad.getResult("ach2"));
+		var achblk3 = new createjs.Bitmap(mmLoad.getResult("ach3"));
+		var r = Math.random();
+		if(r < 0.05) achBtn.image = achblk3.image;
+		else if(r < 0.1) achBtn.image = achblk2.image;
+		else achBtn.image = achblk1.image;
+	}
+		
+	if(stat == STAT_GAME && !IS_OVER) {
 		//if(timer < 29) {	
 		if(timer <= 0) {				
 			ohSound.play();	
@@ -140,8 +152,8 @@ function loadGameSceneRes() {
 
 // Load game over screen resource
 function loadGameoverSceneRes() {
-	queue.loadManifest({path:RES_DIR + "img/", manifest:[{src:"over_circle.png", id:"overcircle"}, {src:"btn_continue.png", id:"continue"},
-	{src:"btn_menu.png", id:"menu"}]}, !1);
+	queue.loadManifest({path:RES_DIR + "img/", manifest:[{src:"over_circle.png", id:"overcircle"}, {src:"btn_continue.png", id:"continue"}, {src:"btn_menu.png", id:"menu"},
+	{src:"btn_ach1.png", id:"ach1"}, {src:"btn_ach2.png", id:"ach2"}, {src:"btn_ach3.png", id:"ach3"}, {src:"astar1.png", id:"astar1"}, {src:"astar2.png", id:"astar2"}, {src:"astar3.png", id:"astar3"}]}, !1);
 }
 
 // Load manual screen resource
@@ -232,6 +244,10 @@ var HomeScene = function (a) {
 		btnY = 450;
 		btnSpan = 175;
 	}
+	
+	// set game stat
+	setStat(STAT_HOME);
+	
 	// play background music
 	bgSound.play();
 	
@@ -314,6 +330,9 @@ var HomeScene = function (a) {
 
 // GameplayScene class
 var GameplayScene = function (a) {
+	// set game stat
+	setStat(STAT_GAME);
+	
     // add background
 	gameCtr = new createjs.Container;
 	stage.addChild(gameCtr);
@@ -331,12 +350,16 @@ var GameoverScene = function(a) {
 	var circleY = 110;	
 	var fbX = 90, fbY = 530;
 	var scoreY = 313, bestY = 396;
+	var starY = 410, achX = 145, achY = 90;
 	var contY = 290, menuY = 140;
 	if(IS_MOBILE) {
 		fbY = 550;
 		contY = 380;
 		menuY = 200;
-	}	
+	}
+	// set game stat
+	setStat(STAT_OVER);	
+	star = star + getStar();
 	
 	var overCtr = new createjs.Container;
 	stage.addChild(overCtr);
@@ -372,7 +395,36 @@ var GameoverScene = function(a) {
 	a.x = (SCREEN_W - a.getBounds().width) / 2;
 	a.y = bestY;
 	overCtr.addChild(a);
+	//stars
+	if(star > 2) a = new createjs.Bitmap(mmLoad.getResult("astar3"));
+	else if(star > 1) a = new createjs.Bitmap(mmLoad.getResult("astar2"));
+	else if(star > 0) a = new createjs.Bitmap(mmLoad.getResult("astar1"));
+	if(star > 0) {
+		a.x = (SCREEN_W - a.getBounds().width) / 2;
+		a.y = starY;
+		overCtr.addChild(a);
+	}
+	/*
+	a = new createjs.Bitmap(mmLoad.getResult("astar3"));	
+	a.x = (SCREEN_W - a.getBounds().width) / 2;
+	a.y = starY;
+	overCtr.addChild(a);*/	
 	
+	//achievement btn	
+	achBtn = new createjs.Bitmap(mmLoad.getResult("ach1"));
+	achBtn.x = SCREEN_W - achX;
+	achBtn.y = achY;
+	overCtr.addChild(achBtn);
+	achBtn.on("mousedown", function (e) {
+		IS_TOUCH && e.nativeEvent instanceof MouseEvent || (this.scaleY = this.scaleX = 0.95);
+		clickSound.play();
+	}, achBtn);
+	achBtn.on("pressup", function (e) {
+		this.scaleY = this.scaleX = 1;		
+		goAchievement(star, level);
+		//stage.removeChild(overCtr);
+	}, achBtn);
+		
 	//fb, twitter, google plus
 	a = new createjs.Bitmap(mmLoad.getResult("fb"));
 	a.x = fbX;
@@ -457,7 +509,9 @@ var ManualScene = function(a, b) {
 		manY = 220;
 		menuY = 200;
 	}
-
+	// set game stat
+	setStat(STAT_MANUAL);
+	
 	var manCtr = new createjs.Container;
 	stage.addChild(manCtr);
 	
@@ -544,10 +598,13 @@ var SettingsScene = function(a) {
 	//sliderbar
 	var topY = 238, leftX = 183, len = 417;
     if(IS_MOBILE) menuY = 200;
-
+	
 	// coefficient (music, effects, brightness)
 	var c1 = 0.0, c2 = 0.0, c3 = 0.0;
 	var w;
+	
+	// set game stat
+	setStat(STAT_SET);
 	
 	var setCtr = new createjs.Container;
 	stage.addChild(setCtr);
@@ -1147,9 +1204,14 @@ function adjustEffects(a) {
 function adjustBrightness(a) {
 }
 
+function setStat(a) {
+	stat = a;
+}
+
 function resetData() {
 	level = 0;
 	score = 0;
+	star = 0;
 	timer = MAX_SEC;
 }
 

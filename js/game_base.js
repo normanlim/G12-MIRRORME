@@ -11,6 +11,16 @@ var SCREEN_XH = 1136;
 // Array size
 var ARRAY_S = 6;
 var TILE_S = 80;
+// Game state
+var STAT_NULL = 0;
+var STAT_HOME = 1;
+var STAT_GAME = 2;
+var STAT_OVER = 3;
+var STAT_MANUAL = 4;
+var STAT_SET = 5;
+var STAT_BOARD = 6;
+var STAT_ACHIEVE = 7;
+
 // Task: 1- horizontal, 2 - vertical, 3 - diagonal, 4 -4 quadrant, 
 // 5 - horizontal inverse, 6 - vertical inverse, 7 - diagonal inverse, 8 -4quadrant inverse
 // 9 - horizontal fade2black, 10 - vertical fade2black, 11 - diagonal fade2black, 12 - 4 quadrant fade2black
@@ -46,6 +56,7 @@ var RES_DIR = "";
 var SOUND_DIR = "";
 var WEB_DIR = "http://cstcode.ca/comp2910/";
 var BOARD_DIR = "http://cstcode.ca/leaderboard/board.php";
+var ACHIEVEMENT_DIR = "http://cstcode.ca/leaderboard/achievement.php";
 var USE_NATIVE_SOUND = !1;
 // Touch supported?
 var IS_TOUCH;
@@ -59,6 +70,9 @@ var MAX_PAGE = 6;
 // Game level & score
 var level = 0;
 var score = 0, best = 0;
+var star = 0;
+var testId = 18527903;
+var stat = STAT_NULL;
 var timer = MAX_SEC;
 var lblTimer;
 var startTime;
@@ -68,6 +82,9 @@ var page = 0;
 var bgFill;
 // Gameplay scene container
 var gameCtr;
+// Achievement btn
+var achBtn;
+
 // Sound effects
 var bgSound = new Audio();
 var clickSound = new Audio();
@@ -378,6 +395,17 @@ function hex2rgb(a) {
 	return a;
 }
 
+String.prototype.rot13 = function(){
+    return this.replace(/[a-zA-Z]/g, function(c){
+        return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);		
+    });
+};
+
+function rota13(c) {
+	var base = 50000;
+	return (base + Math.floor((Math.random() * base) + 1)) + "" + (3*c+1);
+}
+
 function trimStr(s) {
 	var str;
 	if(s.length < 2) str = "0" + s;
@@ -551,6 +579,17 @@ function getScore() {
 	else if(level < 20) s = 30;
 	else if(level < 25) s = 50;
 	else s = 100;
+	return s;
+}
+
+// star
+function getStar() {
+	var s = 0;
+	if(level > 15) s = 5;
+	if(level > 10) s = 4;
+	else if(level > 5) s = 3;
+	else if(level > 2) s = 2;
+	else if(level > 0) s = 1;
 	return s;
 }
 
