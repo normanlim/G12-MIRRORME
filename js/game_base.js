@@ -27,15 +27,15 @@ var STAT_ACHIEVE = 7;
 var TASK_H = 1;
 var TASK_V = 2;
 var TASK_D = 3;
-var TASK_4D = 4;
+var TASK_4Q = 4;
 var TASK_H_I = 5;
 var TASK_V_I = 6;
 var TASK_D_I = 7;
-var TASK_4D_I = 8;
+var TASK_4Q_I = 8;
 var TASK_H_F = 9;
 var TASK_V_F = 10;
 var TASK_D_F = 11;
-var TASK_4D_F = 12;
+var TASK_4Q_F = 12;
 var TASKS = [
 	1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 	11, 12, 1, 2, 3, 4, 5, 6, 7, 8,
@@ -67,8 +67,9 @@ var IS_PRESSED = !1;
 var MAX_LEVEL = 36;
 var MAX_SEC = 30;
 var MAX_PAGE = 6;
-// Game level & score
+// Game level, task & score
 var level = 0;
+var task = 0;
 var score = 0, best = 0;
 var star = 0;
 var testId = 18527903;
@@ -94,6 +95,13 @@ var wrongSound = new Audio();
 var clapSound = new Audio();
 var ohSound = new Audio();
 var slideSound = new Audio();
+// Fadeout array
+var fadeout = [
+	['','','',''],
+	['','','',''],
+	['','','',''],
+	['','','','']
+];
 // Mirror arrays
 var mapData = [
 	[0,0,0,0,0,0],
@@ -152,7 +160,7 @@ var mapSample = [
 	[1,0,0,0,0,0],
 	[0,0,0,0,0,0]
 ],
-[//6-4D
+[//6-4Q
 	[0,0,1,0,0,0],
 	[0,0,0,0,0,0],
 	[0,1,1,0,0,0],
@@ -160,7 +168,7 @@ var mapSample = [
 	[0,0,0,0,0,0],
 	[0,0,0,0,0,0]
 ],
-[//7-4D
+[//7-4Q
 	[1,0,0,0,0,0],
 	[1,1,0,0,0,0],
 	[0,1,0,0,0,0],
@@ -435,13 +443,13 @@ createjs.Container.prototype.addCenterChild = function (a) {
 };
 
 // Generate random array
-function genArray(task) {
+function genArray() {
 	var toMap = [];
 	// generate array of set number of 1's and 0's depending on level, and then shuffle it
-	if (task == TASK_4D || task == TASK_4D_I || task == TASK_4D_F) {
+	if (task == TASK_4Q || task == TASK_4Q_I || task == TASK_4Q_F) {
 		var flippedCount = Math.floor(level/9) + 2;
 		if (flippedCount > 6) {
-			flippedCount = 6; // cap maximum flipped tiles at 6 for 4d levels
+			flippedCount = 6; // cap maximum flipped tiles at 6 for 4Q levels
 		}
 		for (i = 0; i < 9; i++) {
 			if (flippedCount > 0) {
@@ -543,7 +551,7 @@ function genArray(task) {
 			if(r < 0.5) mapData = mapSample[4];
 			else mapData = mapSample[5];
 		}*/
-	} else if(task == TASK_4D || task == TASK_4D_I || task == TASK_4D_F) {	
+	} else if(task == TASK_4Q || task == TASK_4Q_I || task == TASK_4Q_F) {	
 		count = 0;
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {			

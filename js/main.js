@@ -4,59 +4,9 @@
 *
 */
 createjs.Ticker.on("tick", function () {
-	var task = TASKS[level];
-	
-	if(stat == STAT_GAME && task > 8) {
-		var warnr2 = new createjs.Bitmap(mmLoad.getResult("warnr2"));
-		var warnr3 = new createjs.Bitmap(mmLoad.getResult("warnr3"));
-		var warnr4 = new createjs.Bitmap(mmLoad.getResult("warnr4"));
-		var warnd1 = new createjs.Bitmap(mmLoad.getResult("warnd1"));
-		var warnd2 = new createjs.Bitmap(mmLoad.getResult("warnd2"));
-		var warnd3 = new createjs.Bitmap(mmLoad.getResult("warnd3"));
-		var warnd4 = new createjs.Bitmap(mmLoad.getResult("warnd4"));
-		var warnq1 = new createjs.Bitmap(mmLoad.getResult("warnq1"));
-		var warnq2 = new createjs.Bitmap(mmLoad.getResult("warnq2"));
-		var warnq3 = new createjs.Bitmap(mmLoad.getResult("warnq3"));
-		var warnq4 = new createjs.Bitmap(mmLoad.getResult("warnq4"));		
-		
-		warnr2.y = 215;
-		warnr2.scaleX = 1.46;
-		warnr2.scaleY = 1.85;
-		warnr3.y = 215;
-		warnr3.scaleX = 1.46;
-		warnr3.scaleY = 1.85;
-		warnr4.y = 215;
-		warnr4.scaleX = 1.46;
-		warnr4.scaleY = 1.85;
-		
-		warnd1.scaleX = 1.45;
-		warnd1.scaleY = 1.45;
-		warnd1.y = 225;
-		warnd2.scaleX = 1.45;
-		warnd2.scaleY = 1.45;
-		warnd2.y = 225;
-		warnd3.scaleX = 1.45;
-		warnd3.scaleY = 1.45;
-		warnd3.y = 225;
-		warnd4.scaleX = 1.45;
-		warnd4.scaleY = 1.45;
-		warnd4.y = 225;
-		warnd1.x = warnd2.x = warnd3.x = warnd4.x = 10;
-		
-		warnq1.scaleX = warnq1.scaleY = 1.45;
-		warnq1.x = 3;
-		warnq1.y = 225;
-		warnq2.scaleX = warnq2.scaleY = 1.45;
-		warnq2.x = 3;
-		warnq2.y = 225;
-		warnq3.scaleX = warnq3.scaleY = 1.45;
-		warnq3.x = 3;
-		warnq3.y = 225;
-		warnq4.scaleX = warnq4.scaleY = 1.45;
-		warnq4.x = 3;
-		warnq4.y = 225;
-	}
-	
+	//the time to start fading out, time span
+	var st = 5, tspan = 2;//1;
+
 	if(stat == STAT_OVER) {
 		var achblk1 = new createjs.Bitmap(mmLoad.getResult("ach1"));
 		var achblk2 = new createjs.Bitmap(mmLoad.getResult("ach2"));
@@ -66,10 +16,46 @@ createjs.Ticker.on("tick", function () {
 		else if(r < 0.1) achBtn.image = achblk2.image;
 		else achBtn.image = achblk1.image;
 	}
+	/*
+	if(stat == STAT_GAME && task >= TASK_H_F) {
+		var warnh0 = new createjs.Bitmap(mmLoad.getResult("warnh0"));
+		var warnh1 = new createjs.Bitmap(mmLoad.getResult("warnh1"));
+		var warnh2 = new createjs.Bitmap(mmLoad.getResult("warnh2"));
+		var warnh3 = new createjs.Bitmap(mmLoad.getResult("warnh3"));
+		var warnv0 = new createjs.Bitmap(mmLoad.getResult("warnv0"));
+		var warnv1 = new createjs.Bitmap(mmLoad.getResult("warnv1"));
+		var warnv2 = new createjs.Bitmap(mmLoad.getResult("warnv2"));
+		var warnv3 = new createjs.Bitmap(mmLoad.getResult("warnv3"));
+		var warnd0 = new createjs.Bitmap(mmLoad.getResult("warnd0"));
+		var warnd1 = new createjs.Bitmap(mmLoad.getResult("warnd1"));
+		var warnd2 = new createjs.Bitmap(mmLoad.getResult("warnd2"));
+		var warnd3 = new createjs.Bitmap(mmLoad.getResult("warnd3"));
+		var warnq0 = new createjs.Bitmap(mmLoad.getResult("warnq0"));
+		var warnq1 = new createjs.Bitmap(mmLoad.getResult("warnq1"));
+		var warnq2 = new createjs.Bitmap(mmLoad.getResult("warnq2"));
+		var warnq3 = new createjs.Bitmap(mmLoad.getResult("warnq3"));
 		
+		// H-F
+		if(task == TASK_H_F) {			
+			warnh0.x = warnh1.x = warnh2.x = warnh3.x = hx;
+			warnh0.y = warnh1.y = warnh2.y = warnh3.y = hy;
+			//warnr0.scaleX = warnr1.scaleX = warnr2.scaleX = warnr3.scaleX = hsx;
+			//warnr0.scaleY = warnr1.scaleY = warnr2.scaleY = warnr3.scaleY = hsy;
+		} else if(task == TASK_V_F) {
+			warnv0.x = warnv1.x = warnv2.x = warnv3.x = vx;
+			warnv0.y = warnv1.y = warnv2.y = warnv3.y = vy;
+		} else if(task == TASK_D_F) {
+			warnd0.x = warnd1.x = warnd2.x = warnd3.x = dx;
+			warnd0.y = warnd1.y = warnd2.y = warnd3.y = dy;			
+		} else {
+			warnq0.x = warnq1.x = warnq2.x = warnq3.x = dx;
+			warnq0.y = warnq1.y = warnq2.y = warnq3.y = dy;				
+		}		
+	}*/
+			
 	if(stat == STAT_GAME && !IS_OVER) {
 		//if(timer < 29) {	
-		if(timer <= 0) {				
+		if(timer <= 0) {
 			ohSound.play();	
 			IS_OVER = !0;
 			if(score > best) {
@@ -82,51 +68,14 @@ createjs.Ticker.on("tick", function () {
 			var lapse = Math.floor((createjs.Ticker.getTime(!1) - startTime) / 1000);
 			if(lapse >= 0 && lapse <= MAX_SEC) {
 				timer = MAX_SEC - lapse;
-				lblTimer.text = "0:" + trimStr(""+timer);
+				lblTimer.text = "0:" + trimStr(""+timer);				
 				
-				if (task == TASK_H_F) {
-					if (lapse > 4 && lapse < 6) {
-						gameCtr.addChild(warnr2);
-					} else if (lapse >= 6 && lapse < 7) {
-						gameCtr.addChild(warnr3);
-					} else if (lapse >= 7) {
-						gameCtr.addChild(warnr4);
-					}
-				} else if (task == TASK_V_F) {
-					warnr2.rotation = -90;
-					warnr2.y = 855;
-					warnr3.rotation = -90;
-					warnr3.y = 855;
-					warnr4.rotation = -90;
-					warnr4.y = 855;
-					if (lapse > 4 && lapse < 6) {
-						gameCtr.addChild(warnr2);
-					} else if (lapse >= 6 && lapse < 7) {
-						gameCtr.addChild(warnr3);
-					} else if (lapse >= 7) {
-						gameCtr.addChild(warnr4);
-					}
-				} else if (task == TASK_D_F) {
-					if (lapse > 4 && lapse < 6) {
-						gameCtr.addChild(warnd1);
-					} else if (lapse >= 6 && lapse < 7) {
-						gameCtr.addChild(warnd2);
-					} else if (lapse >= 7 && lapse < 8) {
-						gameCtr.addChild(warnd3);
-					} else if (lapse >= 8) {
-						gameCtr.addChild(warnd4);
-					}
-				} else if (task == TASK_4D_F) {
-					if (lapse > 4 && lapse < 6) {
-						gameCtr.addChild(warnq1);
-					} else if (lapse >= 6 && lapse < 7) {
-						gameCtr.addChild(warnq2);
-					} else if (lapse >= 7 && lapse < 8) {
-						gameCtr.addChild(warnq3);
-					} else if (lapse >= 8) {
-						gameCtr.addChild(warnq4);
-					}
-				}
+				if(task >= TASK_H_F) {	
+					if(lapse == st) gameCtr.addChild(fadeout[task - TASK_H_F][0]);
+					if(lapse == st + tspan) gameCtr.addChild(fadeout[task - TASK_H_F][1]);
+					if(lapse == st + 2*tspan) gameCtr.addChild(fadeout[task - TASK_H_F][2]);
+					if(lapse == st + 3*tspan) gameCtr.addChild(fadeout[task - TASK_H_F][3]);	
+				}					
 			}
 		}
 	}
@@ -144,10 +93,10 @@ function loadGameSceneRes() {
 	queue.loadManifest({path:RES_DIR + "img/", manifest:[{src:"bg.png", id:"bg"}, {src:"bg1.png", id:"bg1"}, {src:"btn_go.png", id:"go"}, 
 	{src:"mirror.png", id:"mirror"}, {src:"bar_score.png", id:"barscore"}, {src:"bar_timer.png", id:"bartimer"}, {src:"bar_task.png", id:"bartask"}, 
 	{src:"tile_split.png", id:"tilesplit"}, {src:"tile_con.png", id:"tilecon"}, {src:"tile_coff.png", id:"tilecoff"}, {src:"tile_on.png", id:"tileon"}, 
-	{src:"tile_on1.png", id:"tileon1"}, {src:"tile_off1.png", id:"tileoff1"}, {src:"tile_on2.png", id:"tileon2"}, {src:"tile_off2.png", id:"tileoff2"}, 
-	{src:"tile_off.png", id:"tileoff"}, {src:"warningRECTboarder.gif", id:"warnr1"}, {src:"warningRECTboarder2.gif", id:"warnr2"}, {src:"warningRECTboarder3.gif", id:"warnr3"}, 
-	{src:"warningRECTboarder4.gif", id:"warnr4"}, {src:"warnREAL0.gif", id:"warnd0"}, {src:"warnREAL1.gif", id:"warnd1"}, {src:"warnREAL2.gif", id:"warnd2"}, 
-	{src:"warnREAL3.gif", id:"warnd3"}, {src:"warnREAL4.gif", id:"warnd4"}, {src:"warningSQUARE.gif", id:"warnq0"}, {src:"warningSQUARE1.gif", id:"warnq1"}, {src:"warningSQUARE2.gif", id:"warnq2"}, {src:"warningSQUARE3.gif", id:"warnq3"} ,{src:"warningSQUARE4.gif", id:"warnq4"}]}, !1);
+	{src:"tile_on1.png", id:"tileon1"}, {src:"tile_off1.png", id:"tileoff1"}, {src:"tile_on2.png", id:"tileon2"}, {src:"tile_off2.png", id:"tileoff2"}, {src:"tile_off.png", id:"tileoff"},
+	{src:"warnh0.gif", id:"warnh0"}, {src:"warnh1.gif", id:"warnh1"}, {src:"warnh2.gif", id:"warnh2"}, {src:"warnh3.gif", id:"warnh3"},
+	{src:"warnd0.gif", id:"warnd0"}, {src:"warnd1.gif", id:"warnd1"}, {src:"warnd2.gif", id:"warnd2"}, {src:"warnd3.gif", id:"warnd3"},
+	{src:"warnq0.gif", id:"warnq0"}, {src:"warnq1.gif", id:"warnq1"}, {src:"warnq2.gif", id:"warnq2"}, {src:"warnq3.gif", id:"warnq3"}]}, !1);
 }
 
 // Load game over screen resource
@@ -330,18 +279,21 @@ var HomeScene = function (a) {
 
 // GameplayScene class
 var GameplayScene = function (a) {
+	//set task
+	task = TASKS[level];
 	// set game stat
 	setStat(STAT_GAME);
-	
+
     // add background
 	gameCtr = new createjs.Container;
 	stage.addChild(gameCtr);
 	if(IS_MOBILE) a = new createjs.Bitmap(mmLoad.getResult("bg1"));
 	else a = new createjs.Bitmap(mmLoad.getResult("bg"));
 	gameCtr.addChild(a);	
-	loadTitlebar();
+	loadTitlebar();	
 	loadMap();	
 	loadGo();
+	if(task >= TASK_H_F) loadFade();
 };
 
 // GameoverScene class
@@ -786,6 +738,47 @@ function loadGo() {
 	}, btnGo);
 }
 
+function loadFade() {
+	// x/y coordinates for H/V/D/4Q
+	var hx = 65, hy = 280;
+	var vx = 60, vy = 790, vr = -90;
+	var dx = hx, dy = 285;
+	var x, y;
+
+	if(task <= TASK_V_F) {		
+		if(task == TASK_V_F) {
+			x = vx;
+			y = vy;
+		} else {
+			x = hx;
+			y = hy;
+		}		
+		fadeout[task - TASK_H_F][0] = new createjs.Bitmap(mmLoad.getResult("warnh0"));
+		fadeout[task - TASK_H_F][1] = new createjs.Bitmap(mmLoad.getResult("warnh1"));
+		fadeout[task - TASK_H_F][2] = new createjs.Bitmap(mmLoad.getResult("warnh2"));
+		fadeout[task - TASK_H_F][3] = new createjs.Bitmap(mmLoad.getResult("warnh3"));		
+	} else if(task == TASK_D_F) {
+		x = dx;
+		y = dy;
+		fadeout[task - TASK_H_F][0] = new createjs.Bitmap(mmLoad.getResult("warnd0"));
+		fadeout[task - TASK_H_F][1] = new createjs.Bitmap(mmLoad.getResult("warnd1"));
+		fadeout[task - TASK_H_F][2] = new createjs.Bitmap(mmLoad.getResult("warnd2"));
+		fadeout[task - TASK_H_F][3] = new createjs.Bitmap(mmLoad.getResult("warnd3"));		
+	} else if(task == TASK_4Q_F){
+		x = dx;
+		y = dy;
+		fadeout[task - TASK_H_F][0] = new createjs.Bitmap(mmLoad.getResult("warnq0"));
+		fadeout[task - TASK_H_F][1] = new createjs.Bitmap(mmLoad.getResult("warnq1"));
+		fadeout[task - TASK_H_F][2] = new createjs.Bitmap(mmLoad.getResult("warnq2"));
+		fadeout[task - TASK_H_F][3] = new createjs.Bitmap(mmLoad.getResult("warnq3"));		
+	}
+	fadeout[task - TASK_H_F][0].x = fadeout[task - TASK_H_F][1].x = fadeout[task - TASK_H_F][2].x = fadeout[task - TASK_H_F][3].x = x;
+	fadeout[task - TASK_H_F][0].y = fadeout[task - TASK_H_F][1].y = fadeout[task - TASK_H_F][2].y = fadeout[task - TASK_H_F][3].y = y;
+	if(task == TASK_V_F) {
+		fadeout[task - TASK_H_F][0].rotation = fadeout[task - TASK_H_F][1].rotation = fadeout[task - TASK_H_F][2].rotation = fadeout[task - TASK_H_F][3].rotation = vr;
+	}
+}
+
 function drawBG() {
 	var color = "Red";	
 	bgFill = new createjs.Shape();
@@ -856,18 +849,17 @@ function loadTitlebar() {
 	gameCtr.addChild(lblTimer);
 
 	// task
-	var curTask = TASKS[level];
-	var lblTask = new createjs.Text(TASK_NAME[curTask - 1], "normal 30px Arial", "#000000");
+	var lblTask = new createjs.Text(TASK_NAME[task - 1], "normal 30px Arial", "#000000");
 	lblTask.textBaseline = "small";
 	lblTask.x = barTask.x + (barTask.getBounds().width - lblTask.getBounds().width)/2;
 	lblTask.y = scoreY + scoreSpan;
 	gameCtr.addChild(lblTask);
 }
 
-// Load map. task: 1- horizontal, 2 - vertical, 3 - diagonal, 4 - 4d
+// Load map. Task: H/V/D/4Q/I/F
 function loadMap() {	
-	var task = TASKS[level];
-	MAX_SEC = 30 - (Math.floor(level/12) * 3); // start with 30s, after each set of 12 levels, reduce timer by 3s
+	// start with 30s, after each set of 12 levels, reduce timer by 3s
+	MAX_SEC = 30 - (Math.floor(level/12) * 3);
 	if (MAX_SEC < 15) { // set floor to 15s
 		MAX_SEC = 15;
 	}
@@ -881,7 +873,7 @@ function loadMap() {
 		tile[k] = ['','','','','',''];
 	}
 	// Generate random maps
-	genArray(task);	
+	genArray();	
 	
 	var tileoff = new createjs.Bitmap(mmLoad.getResult("tileoff"));
 	var tileoff1 = new createjs.Bitmap(mmLoad.getResult("tileoff1"));
@@ -889,10 +881,7 @@ function loadMap() {
 	var tileon = new createjs.Bitmap(mmLoad.getResult("tileon"));
 	var tileon1 = new createjs.Bitmap(mmLoad.getResult("tileon1"));
 	var tileon2 = new createjs.Bitmap(mmLoad.getResult("tileon2"));
-	var warnr1 = new createjs.Bitmap(mmLoad.getResult("warnr1"));
-	var warnd0 = new createjs.Bitmap(mmLoad.getResult("warnd0"));
-	var warnq0 = new createjs.Bitmap(mmLoad.getResult("warnq0"));
-	
+		
 	if(task == TASK_H || task == TASK_H_I || task == TASK_H_F) {			
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
@@ -921,13 +910,15 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				warnr1.y = 215;
-				warnr1.scaleX = 1.46;
-				warnr1.scaleY = 1.85;
 				gameCtr.addChild(tile[i][j]);
+				/*
+				warnr0.x = 65;
+				warnr0.y = 280;
+				warnr0.scaleX = 1.15; //1.46;
+				warnr0.scaleY = 1.50; //1.85;				
 				if (task == TASK_H_F) {
-					gameCtr.addChild(warnr1);
-				}
+					gameCtr.addChild(warnr0);
+				}*/
 			}
 		}		
 	} else if(task == TASK_V || task == TASK_V_I || task == TASK_V_F) {
@@ -958,14 +949,16 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				warnr1.y = 855;
-				warnr1.scaleX = 1.46;
-				warnr1.scaleY = 1.85;
-				warnr1.rotation = -90;
 				gameCtr.addChild(tile[i][j]);
+				/*
+				warnr0.x = 60;
+				warnr0.y = SCREEN_H - 171;
+				warnr0.scaleX = 1.15;
+				warnr0.scaleY = 1.5;
+				warnr0.rotation = -90;				
 				if (task == TASK_V_F) {
-					gameCtr.addChild(warnr1);
-				}
+					gameCtr.addChild(warnr0);
+				}*/
 			}
 		}		
 	} else if(task == TASK_D || task == TASK_D_I || task == TASK_D_F) {
@@ -998,17 +991,17 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				warnd0.scaleX = 1.45;
-				warnd0.scaleY = 1.45;
-				warnd0.y = 225;
-				warnd0.x = 10;
 				gameCtr.addChild(tile[i][j]);
+				/*
+				warnd0.scaleX = warnd0.scaleY = 1.31;
+				warnd0.y = 285;
+				warnd0.x = 65;			
 				if (task == TASK_D_F) {
 					gameCtr.addChild(warnd0);
-				}
+				}*/
 			}
 		}		
-	} else if(task == TASK_4D || task == TASK_4D_I || task == TASK_4D_F) {
+	} else if(task == TASK_4Q || task == TASK_4Q_I || task == TASK_4Q_F) {
 		for(i = 0; i < ARRAY_S; i++) {
 			for(j = 0; j < ARRAY_S; j++) {
 				if(i < ARRAY_S/2 && j < ARRAY_S/2) {
@@ -1074,13 +1067,14 @@ function loadMap() {
 				}
 				tile[i][j].x = TILE_X + j * TILE_SPAN;
 				tile[i][j].y = TILE_Y + i * TILE_SPAN;
-				warnq0.scaleX = warnq0.scaleY = 1.45;
-				warnq0.x = 3;
-				warnq0.y = 225;
 				gameCtr.addChild(tile[i][j]);
-				if (task == TASK_4D_F) {
+				/*
+				warnq0.scaleX = warnq0.scaleY = 1.16;
+				warnq0.x = 65;
+				warnq0.y = 285;				
+				if (task == TASK_4Q_F) {
 					gameCtr.addChild(warnq0);
-				}
+				}*/
 			}
 		}		
 	}
@@ -1089,7 +1083,6 @@ function loadMap() {
 function isMatch() {
 	var ret = 1;
 	var c = 0, c1 = 0, c2 = 0, c3 = 0;
-	var task = TASKS[level];
 	if(task == TASK_H || task == TASK_H_F) {
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
@@ -1152,7 +1145,7 @@ function isMatch() {
 			}			
 		}
 		if(c != c1) return 0;
-	} else if(task == TASK_4D || task == TASK_4D_F) {
+	} else if(task == TASK_4Q || task == TASK_4Q_F) {
 	
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
@@ -1167,7 +1160,7 @@ function isMatch() {
 			}			
 		}
 		if(c != c1 || c != c2 || c != c3) return 0;
-	} else if(task == TASK_4D_I) {
+	} else if(task == TASK_4Q_I) {
 	
 		for(i = 0; i < mapData.length; i++) {
 			for(j = 0; j < mapData.length; j++) {
