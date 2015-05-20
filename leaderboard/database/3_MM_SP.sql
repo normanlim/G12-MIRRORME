@@ -82,3 +82,39 @@ BEGIN
 	UPDATE MM_Leaderboard A SET A.UserName = UserName WHERE A.UserId = UserId;
 END;
 
+/*
+//spMM_GetUserAchievement
+//get user's achievements info
+*/
+DROP PROCEDURE IF EXISTS spMM_GetUserAchievement;
+CREATE PROCEDURE spMM_GetUserAchievement(UserId int)
+BEGIN
+	SELECT A.UserId, A.Stars, A.UnlockLevel, A.Unlock1, A.Unlock2, A.Unlock3 FROM MM_Achievement A WHERE A.UserId = UserId;
+END;
+
+/*
+//spMM_UpdateUserAchievement
+//update user's achievements info
+*/
+DROP PROCEDURE IF EXISTS spMM_UpdateUserAchievement;
+CREATE PROCEDURE spMM_UpdateUserAchievement(UserId int, Stars int)
+BEGIN
+	DECLARE curStars INT;
+	DECLARE curLevel INT;
+	DECLARE unlockStars INT;
+	SELECT A.Stars, A.UnlockLevel INTO curStars, curLevel FROM MM_Achievement A WHERE A.UserId = UserId;
+	SELECT B.UnlockStars INTO unlockStars FROM MM_AchievementLevel B WHERE B.AchievementId = curLevel;
+	SET curStars = curStars + Stars;
+	IF curStars >= unlockStars THEN
+		IF curLevel > 2 THEN
+			UPDATE MM_Achievement A SET A.Stars = curStars, A.UnlockLevel = curLevel+1, A.Unlock3 = now() WHERE A.UserId = UserId;
+		ELSEIF curLevel > 1 THEN
+			UPDATE MM_Achievement A SET A.Stars = curStars, A.UnlockLevel = curLevel+1, A.Unlock2 = now() WHERE A.UserId = UserId;
+		ELSE
+			UPDATE MM_Achievement A SET A.Stars = curStars, A.UnlockLevel = curLevel+1, A.Unlock1 = now() WHERE A.UserId = UserId;
+		END IF;
+	ELSE 
+		UPDATE MM_Achievement A SET A.Stars = curStars WHERE A.UserId = UserId;
+	END IF;
+END;
+
