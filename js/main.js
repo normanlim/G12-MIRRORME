@@ -1192,6 +1192,13 @@ function adjustVolume(a) {
 }
 
 function adjustEffects(a) {
+	clickSound.volume = a;
+	toggleSound.volume = a;	
+	correctSound.volume = a;
+	wrongSound.volume = a;	
+	clapSound.volume = a;
+	ohSound.volume = a;
+	slideSound.volume = a;
 }
 
 function adjustBrightness(a) {
