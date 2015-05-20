@@ -15,8 +15,9 @@ Our talented team will continue to accomplish our mission to produce superb, add
 - Yang, Fred
 - Yu, David
 
-3. Demo Site
+3. Demo Site & Android APK Download Link
 http://cstcode.ca/comp2910/
+http://cstcode.ca/mirrorme/
 
 4. Features & Applicable Platforms
 - Endless challenging levels to beat, 100% free.
