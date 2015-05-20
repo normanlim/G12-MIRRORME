@@ -42,5 +42,6 @@ MirrorMe
 		|__style (contains a css style file)
 		|__include (contains a global js file)
 	
-	
+7. Github
+https://github.com/normanlim/G12-MIRRORME
 	
