@@ -831,6 +831,17 @@ function loadTitlebar() {
 	barTask.x = SCREEN_W - scoreX - barTask.getBounds().width;
 	barTask.y = scoreY;
 	gameCtr.addChild(barTask);
+	barTask.on("mousedown", function (e) {
+		IS_TOUCH && e.nativeEvent instanceof MouseEvent || (this.scaleY = this.scaleX = 0.95);
+		clickSound.play();
+	}, barTask);
+	barTask.on("pressup", function (e) {
+		this.scaleY = this.scaleX = 1;		
+		//resetData();
+		timer = MAX_SEC;
+		loadHomeScene();
+		stage.removeChild(gameCtr);
+	}, barTask);
 	
 	// add title
 	// score
