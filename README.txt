@@ -8,12 +8,6 @@ The game will not only make you look and think twice, but force you to adapt to 
 
 2. About Team
 Our talented team will continue to accomplish our mission to produce superb, addictive and fun mobile games for all to enjoy.
-*** Members of Team#12 ***
-- Lim, Norman
-- Park, Michael
-- Yiao, Shu
-- Yang, Fred
-- Yu, David
 
 3. Demo Site & Android APK Download Link
 http://cstcode.ca/comp2910/
