@@ -10,8 +10,8 @@ The game will not only make you look and think twice, but force you to adapt to 
 Our talented team will continue to accomplish our mission to produce superb, addictive and fun mobile games for all to enjoy.
 
 3. Demo Site & Android APK Download Link
-http://cstcode.ca/comp2910/
-http://cstcode.ca/mirrorme/
+http://cstcode.ca/proj/mirrorme/
+http://cstcode.ca/proj/comp2910/
 
 4. Features & Applicable Platforms
 - Endless challenging levels to beat, 100% free.
